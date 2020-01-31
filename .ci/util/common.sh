@@ -16,6 +16,8 @@ installStartDocker() {
 
 install_required_packages() {
      cat /etc/os-release
+     apk add --update nodejs npm
+     node -v
     apt install qemu-kvm libvirt-daemon libvirt-daemon-system
     apt install libvirt-bin qemu-kvm
     usermod -a -G libvirt $(whoami)
