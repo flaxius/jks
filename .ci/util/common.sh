@@ -39,10 +39,7 @@ setup_kvm_machine_driver() {
     echo "[INFO] Installing docker machine kvm drivers..."
     sudo curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-centos7 -o /usr/local/bin/docker-machine-driver-kvm
     sudo chmod +x /usr/local/bin/docker-machine-driver-kvm
-    check_libvirtd=$(systemctl is-active libvirtd)
-    if [ $check_libvirtd != 'active' ]; then
-        virsh net-start default
-    fi
+    sudo systemctl start libvirtd
 }
 
 minishift_installation() {
