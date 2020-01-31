@@ -39,9 +39,9 @@ function load_jenkins_vars() {
 
 function install_required_packages() {
   # Install EPEL repo
-  yum -y install epel-release
+  sudo yum -y install epel-release
   # Get all the deps in
-  yum -y install make \
+  sudo yum -y install make \
                  git \
                  livecd-tools \
                  curl \
