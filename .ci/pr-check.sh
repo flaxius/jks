@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e -x
 BASE_DIR=$(cd "$(dirname "$0")"; pwd)
 set -x
   if [[ ${WORKSPACE} ]] && [[ -d ${WORKSPACE} ]]; then OPERATOR_REPO=${WORKSPACE}; else OPERATOR_REPO=$(dirname "$SCRIPTPATH"); fi

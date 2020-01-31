@@ -9,7 +9,7 @@
 # Contributors:
 #   Red Hat, Inc. - initial API and implementation
 
-set -e
+set -e -x
 
 installStartDocker() {
   if [ -x "$(command -v docker)" ]; then
