@@ -1,3 +1,4 @@
 #!/bin/bash
+BASE_DIR=$(cd "$(dirname "$0")"; pwd)
 
-source ./util/common.sh
+source ${BASE_DIR}/.ci/util/common.sh
