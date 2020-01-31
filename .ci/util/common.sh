@@ -40,7 +40,7 @@ setup_kvm_machine_driver() {
     sudo curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-centos7 -o /usr/local/bin/docker-machine-driver-kvm
     sudo chmod +x /usr/local/bin/docker-machine-driver-kvm
     sudo systemctl start libvirtd
-}
+}who
 
 minishift_installation() {
   MSFT_RELEASE="1.34.2"
