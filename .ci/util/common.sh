@@ -37,8 +37,8 @@ start_libvirt() {
 
 setup_kvm_machine_driver() {
     echo "[INFO] Installing docker machine kvm drivers..."
-    sudo curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-centos7 -o /usr/bin/docker-machine-driver-kvm
-    sudo chmod +x /usr/bin/docker-machine-driver-kvm
+    sudo curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-centos7 -o /usr/local/bin/docker-machine-driver-kvm
+    sudo chmod +x /usr/local/bin/docker-machine-driver-kvm
     check_libvirtd=$(systemctl is-active libvirtd)
     if [ $check_libvirtd != 'active' ]; then
         virsh net-start default
@@ -48,8 +48,8 @@ setup_kvm_machine_driver() {
 minishift_installation() {
   MSFT_RELEASE="1.34.2"
   echo "[INFO] Downloading Minishift binaries..."
-  sudo curl -s -S -L https://github.com/minishift/minishift/releases/download/v$MSFT_RELEASE/minishift-$MSFT_RELEASE-linux-amd64.tgz \
-    -o ${OPERATOR_REPO}/tmp/minishift-$MSFT_RELEASE-linux-amd64.tar && sudo tar -xvf ${OPERATOR_REPO}/tmp/minishift-$MSFT_RELEASE-linux-amd64.tar -C /usr/bin --strip-components=1
+  curl -s -S -L https://github.com/minishift/minishift/releases/download/v$MSFT_RELEASE/minishift-$MSFT_RELEASE-linux-amd64.tgz \
+    -o ${OPERATOR_REPO}/tmp/minishift-$MSFT_RELEASE-linux-amd64.tar && tar -xvf ${OPERATOR_REPO}/tmp/minishift-$MSFT_RELEASE-linux-amd64.tar -C /usr/local/bin --strip-components=1
   echo "[INFO] Sarting a new OC cluster."
   minishift start --memory=4096 && eval $(minishift oc-env)
   oc login -u system:admin
