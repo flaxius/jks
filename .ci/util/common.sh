@@ -33,13 +33,12 @@ setup_kvm_machine_driver() {
 minishift_installation() {
   MSFT_RELEASE="1.34.2"
       check_libvirtd=$(systemctl is-active libvirtd)
-    if [ $check_libvirtd != 'active' ]; then
-        virsh net-start default
-    fi
+newgrp libvirt
   echo "[INFO] Downloading Minishift binaries..."
   sudo curl -s -S -L https://github.com/minishift/minishift/releases/download/v$MSFT_RELEASE/minishift-$MSFT_RELEASE-linux-amd64.tgz \
     -o ${OPERATOR_REPO}/tmp/minishift-$MSFT_RELEASE-linux-amd64.tar && sudo tar -xvf ${OPERATOR_REPO}/tmp/minishift-$MSFT_RELEASE-linux-amd64.tar -C /usr/local/bin --strip-components=1
   echo "[INFO] Sarting a new OC cluster."
+  minishift config set skip-check-kvm-driver true
   minishift start --memory=4096 && eval $(minishift oc-env)
   oc login -u system:admin
   oc adm policy add-cluster-role-to-user cluster-admin developer && oc login -u developer -p developer
