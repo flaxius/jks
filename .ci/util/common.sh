@@ -15,11 +15,11 @@ installStartDocker() {
 }
 
 install_required_packages() {
-    sudo apt install qemu-kvm libvirt-daemon libvirt-daemon-system
-    sudo apt install libvirt-bin qemu-kvm
-    sudo usermod -a -G libvirt $(whoami)
-    sudo curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-ubuntu16.04 -o /usr/local/bin/docker-machine-driver-kvm
-    sudo chmod +x /usr/local/bin/docker-machine-driver-kvm
-    sudo systemctl start libvirtd
+    apt install qemu-kvm libvirt-daemon libvirt-daemon-system
+    apt install libvirt-bin qemu-kvm
+    usermod -a -G libvirt $(whoami)
+    curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-ubuntu16.04 -o /usr/local/bin/docker-machine-driver-kvm
+    chmod +x /usr/local/bin/docker-machine-driver-kvm
+    systemctl start libvirtd
     echo '[INFO]CICO: Required virtualization packages installed'
 }
