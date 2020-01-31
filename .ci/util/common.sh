@@ -15,8 +15,11 @@ installStartDocker() {
 }
 
 install_required_packages() {
-    # Install EPEL repo
-    # Get all the deps in
-    yum -y install libvirt qemu-kvm
-  echo '[INFO]CICO: Required virtualization packages installed'
+    sudo apt install qemu-kvm libvirt-daemon libvirt-daemon-system
+    sudo apt install libvirt-bin qemu-kvm
+    sudo usermod -a -G libvirt $(whoami)
+    sudo curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-ubuntu16.04 -o /usr/local/bin/docker-machine-driver-kvm
+    sudo chmod +x /usr/local/bin/docker-machine-driver-kvm
+    sudo systemctl start libvirtd
+    echo '[INFO]CICO: Required virtualization packages installed'
 }
